@@ -44,11 +44,11 @@ FOR EACH ROW
 BEGIN
     IF OLD.card_type <> NEW.card_type THEN
         IF NEW.card_type = 'gold' THEN
-            SET NEW.total_credit = 100000.00;  -- You can also use := for assignment
+            SET NEW.total_credit = 100000.00;
         ELSEIF NEW.card_type = 'platinum' THEN
-            SET NEW.total_credit = 300000.00;  -- You can also use := for assignment
+            SET NEW.total_credit = 300000.00;
         ELSE
-            SET NEW.total_credit = 0.00;  -- You can also use := for assignment
+            SET NEW.total_credit = 0.00;
         END IF;
     END IF;
 END$$
