@@ -1,3 +1,4 @@
+package dao;
 
 public class Admin {
     private int adminId;
