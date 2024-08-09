@@ -82,6 +82,7 @@ CREATE TABLE installments (
     installment_due_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
     amount DECIMAL(10, 2) NOT NULL,
     payment_status ENUM('paid', 'pending') DEFAULT 'pending',
+    payment_date TIMESTAMP NULL,
     FOREIGN KEY (purchase_id) REFERENCES purchases(purchase_id)
 );
 
@@ -101,6 +102,25 @@ BEGIN
         SET i = i + 1;
         SET due_date = DATE_ADD(due_date, INTERVAL 1 MONTH);
     END WHILE;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER update_purchase_after_installments
+AFTER UPDATE ON installments
+FOR EACH ROW
+BEGIN
+    DECLARE paid_count INT;
+    DECLARE total_count INT;
+
+    SELECT COUNT(*) INTO paid_count FROM installments WHERE purchase_id = NEW.purchase_id AND payment_status = 'paid';
+    SELECT COUNT(*) INTO total_count FROM installments WHERE purchase_id = NEW.purchase_id;
+
+    IF paid_count = total_count THEN
+        UPDATE purchases 
+        SET payment_status = 'completed' 
+        WHERE purchase_id = NEW.purchase_id;
+    END IF;
 END$$
 DELIMITER ;
 
