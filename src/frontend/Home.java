@@ -1,9 +1,18 @@
 package frontend;
 
+// Sakshi:
+// 		-> Login Page
+// 		-> Register Page
+// 		-> Admin Dashboard Page
+
+// Aman:
+// 		-> View Product Page -> Buy option... eligibility
+// 		-> User Dashboard Page
+
 
 public class Home {
 	
-	static boolean isLoggedIn = false;
+	static boolean isLoggedIn = true;
 	static boolean isAdmin = false;
 
 	public static void main(String[] args) {
