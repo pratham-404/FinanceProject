@@ -2,7 +2,6 @@ package model;
 import java.util.Date;
 
 public class User {
-    private int userId;
     private String name;
     private Date dob;
     private String email;
@@ -10,19 +9,20 @@ public class User {
     private String username;
     private String password;
     private String address;
-    private String cardType; // "gold" or "platinum"
+    private String cardType;
     private String bankName;
-    private String accountNo;
+    private String accountNo; 	
     private String ifscCode;
-    private double totalCredit;
-    private double usedCredit;
+    
+    // not used in constructor call
+    private int userId;
+    private float totalCredit;
+    private float usedCredit;
     private boolean isActive;
     
-	public User(int userId, String name, Date dob, String email, String phoneNo, String username, String password,
-			String address, String cardType, String bankName, String accountNo, String ifscCode, double totalCredit,
-			double usedCredit, boolean isActive) {
+	public User(String name, Date dob, String email, String phoneNo, String username, String password, String address,
+			String cardType, String bankName, String accountNo, String ifscCode) {
 		super();
-		this.userId = userId;
 		this.name = name;
 		this.dob = dob;
 		this.email = email;
@@ -34,25 +34,13 @@ public class User {
 		this.bankName = bankName;
 		this.accountNo = accountNo;
 		this.ifscCode = ifscCode;
-		this.totalCredit = totalCredit;
-		this.usedCredit = usedCredit;
-		this.isActive = isActive;
 	}
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", name=" + name + ", dob=" + dob + ", email=" + email + ", phoneNo="
-				+ phoneNo + ", username=" + username + ", password=" + password + ", address=" + address + ", cardType="
-				+ cardType + ", bankName=" + bankName + ", accountNo=" + accountNo + ", ifscCode=" + ifscCode
-				+ ", totalCredit=" + totalCredit + ", usedCredit=" + usedCredit + ", isActive=" + isActive + "]";
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
+		return "User [name=" + name + ", dob=" + dob + ", email=" + email + ", phoneNo=" + phoneNo + ", username="
+				+ username + ", address=" + address + ", cardType=" + cardType
+				+ ", bankName=" + bankName + ", accountNo=" + accountNo + ", ifscCode=" + ifscCode + "]";
 	}
 
 	public String getName() {
@@ -143,19 +131,27 @@ public class User {
 		this.ifscCode = ifscCode;
 	}
 
-	public double getTotalCredit() {
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public float getTotalCredit() {
 		return totalCredit;
 	}
 
-	public void setTotalCredit(double totalCredit) {
+	public void setTotalCredit(float totalCredit) {
 		this.totalCredit = totalCredit;
 	}
 
-	public double getUsedCredit() {
+	public float getUsedCredit() {
 		return usedCredit;
 	}
 
-	public void setUsedCredit(double usedCredit) {
+	public void setUsedCredit(float usedCredit) {
 		this.usedCredit = usedCredit;
 	}
 

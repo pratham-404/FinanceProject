@@ -8,7 +8,7 @@ public class Installment {
     private double amount;
     private String paymentStatus; // "paid", "pending"
     private Date paymentDate;
-    
+        
 	public Installment(int installmentId, int purchaseId, Date installmentDueDate, double amount, String paymentStatus,
 			Date paymentDate) {
 		super();

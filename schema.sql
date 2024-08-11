@@ -155,4 +155,5 @@ VALUES
 (4, 4, '9 months', 5000.00, 9),
 (5, 5, '12 months', 20000.00, 12);
 
-INSERT INTO admin (username, password) VALUES ('admin', 'adminpass123');
+-- password: adminpass123
+INSERT INTO admin (username, password) VALUES ('admin', '$2a$10$RU.empeeFr.ks1PprvIE0eqsyaP/RF4smc7S/x5mXn4gvCCt5FK/O');
