@@ -8,10 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AdminDao {
+public class AdminDAO {
     private Connection connection;
 
-    public AdminDao(Connection connection) {
+    public AdminDAO(Connection connection) {
         this.connection = connection;
     }
 

@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class PurchaseDao {
+public class PurchaseDAO {
     private Connection connection;
 
-    public PurchaseDao(Connection connection) {
+    public PurchaseDAO(Connection connection) {
         this.connection = connection;
     }
 

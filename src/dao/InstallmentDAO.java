@@ -6,10 +6,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InstallmentDao {
+public class InstallmentDAO {
     private Connection connection;
 
-    public InstallmentDao(Connection connection) {
+    public InstallmentDAO(Connection connection) {
         this.connection = connection;
     }
 

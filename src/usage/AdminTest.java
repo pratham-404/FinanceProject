@@ -1,6 +1,6 @@
 package usage;
 
-import dao.AdminDao;
+import dao.AdminDAO;
 import model.Admin;
 
 import java.sql.Connection;
@@ -10,13 +10,13 @@ import java.util.Scanner;
 
 public class AdminTest {
     private static Connection connection;
-    private static AdminDao adminDao;
+    private static AdminDAO adminDao;
 
     public static void main(String[] args) {
         try {
             // Set up the database connection
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/finance_app", "root", "root");
-            adminDao = new AdminDao(connection);
+            adminDao = new AdminDAO(connection);
 
             Scanner scanner = new Scanner(System.in);
             System.out.print("Username: ");

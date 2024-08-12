@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/ABhogal/Desktop/Training/Project/FinanceProject/lib/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="src"/>
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="C:/Users/praloya/Documents/workspace-spring-tool-suite-4-4.24.0.RELEASE/FinanceProject/lib/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0.jar"/>
-=======
-	<classpathentry kind="lib" path="C:/Users/ABhogal/Desktop/Training/Project/FinanceProject/lib/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0.jar"/>
->>>>>>> ab302c4a3d171d2948194ab3c2f54047db3d4f5d
 	<classpathentry kind="output" path="bin"/>
 </classpath>
