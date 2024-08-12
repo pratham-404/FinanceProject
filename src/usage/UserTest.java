@@ -1,6 +1,6 @@
 package usage;
 
-import dao.UserDao;
+import dao.UserDAO;
 import model.User;
 
 import java.sql.Connection;
@@ -13,13 +13,13 @@ import java.util.Scanner;
 
 public class UserTest {
     private static Connection connection;
-    private static UserDao userDao;
+    private static UserDAO userDao;
 
     public static void main(String[] args) {
         try {
             // Set up the database connection
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/finance_app", "root", "root");
-            userDao = new UserDao(connection);
+            userDao = new UserDAO(connection);
 
             Scanner scanner = new Scanner(System.in);
             while (true) {

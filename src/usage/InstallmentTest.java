@@ -1,6 +1,6 @@
 package usage;
 
-import dao.InstallmentDao;
+import dao.InstallmentDAO;
 import model.Installment;
 
 import java.sql.Connection;
@@ -11,13 +11,13 @@ import java.util.List;
 
 public class InstallmentTest {
     private static Connection connection;
-    private static InstallmentDao installmentDao;
+    private static InstallmentDAO installmentDao;
 
     public static void main(String[] args) {
         try {
             // Set up the database connection
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/finance_app", "root", "root");
-            installmentDao = new InstallmentDao(connection);
+            installmentDao = new InstallmentDAO(connection);
 
 
             // Test retrieving installments by user ID

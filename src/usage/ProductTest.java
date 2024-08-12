@@ -1,6 +1,6 @@
 package usage;
 
-import dao.ProductDao;
+import dao.ProductDAO;
 import model.Product;
 
 import java.sql.Connection;
@@ -10,13 +10,13 @@ import java.util.List;
 
 public class ProductTest {
     private static Connection connection;
-    private static ProductDao productDao;
+    private static ProductDAO productDao;
 
     public static void main(String[] args) {
         try {
             // Set up the database connection
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/finance_app", "root", "root");
-            productDao = new ProductDao(connection);
+            productDao = new ProductDAO(connection);
 
             // Read all products and display them
             List<Product> products = productDao.readAllProducts();

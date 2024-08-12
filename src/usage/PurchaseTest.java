@@ -1,6 +1,6 @@
 package usage;
 
-import dao.PurchaseDao;
+import dao.PurchaseDAO;
 import model.Purchase;
 
 import java.sql.Connection;
@@ -11,13 +11,13 @@ import java.util.Scanner;
 
 public class PurchaseTest {
     private static Connection connection;
-    private static PurchaseDao purchaseDao;
+    private static PurchaseDAO purchaseDao;
 
     public static void main(String[] args) {
         try {
             // Set up the database connection
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/finance_app", "root", "root");
-            purchaseDao = new PurchaseDao(connection);
+            purchaseDao = new PurchaseDAO(connection);
 
             Scanner scanner = new Scanner(System.in);
             System.out.print("Enter User ID to view purchases: ");
