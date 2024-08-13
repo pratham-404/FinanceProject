@@ -16,7 +16,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
-import Line;
 
 import java.util.Date;
 
@@ -47,63 +46,83 @@ public class ViewProducts {
 	            System.out.println(ProductFormatter.formatProductAsCard(product));
 	        }
 	        
-	     // Prompt user to select a product for more details
-            System.out.print("Enter the ID of the product you wish to see in more detail: ");
-            int productId = sc.nextInt();
-            sc.nextLine(); // Consume newline
+	        // Prompt user to select a product for more details
+	        System.out.println("Options:");
+	        System.out.println("1. View Detailed Product.");
+	        System.out.println("2. Go Back.");
+	        System.out.println("3. Exit");
+	        System.out.print("Enter your choice: ");
+	        int o = sc.nextInt();
+	        switch(o) {
+	        case 1:
+	        	System.out.print("Enter the ID of the product you wish to see in more detail: ");
+	            int productId = sc.nextInt();
+	            sc.nextLine(); // Consume newline
 
-            // Display product details and EMI options
-            Product selectedProduct = getProductById(productId, productDao);
-            if (selectedProduct != null) {
-            	System.out.println();
-            	System.out.println("\t\t\t<- Product Details ->");
-            	l.line(90);
-                displayProductDetails(selectedProduct);
+	            // Display product details and EMI options
+	            Product selectedProduct = getProductById(productId, productDao);
+	            if (selectedProduct != null) {
+	            	System.out.println();
+	            	System.out.println("\t\t\t<- Product Details ->");
+	            	l.line(90);
+	                displayProductDetails(selectedProduct);
 
-                // Display EMI options
-                displayEmiOptions(selectedProduct);
+	                // Display EMI options
+	                displayEmiOptions(selectedProduct);
 
-                if (isLoggedIn != null) {
-                    System.out.println("1. Buy Product");
-                    System.out.println("2. Go back");
-                    System.out.print("Enter your choice: ");
-                    int action = sc.nextInt();
-                    sc.nextLine(); // Consume newline
+	                if (isLoggedIn != null) {
+	                    System.out.println("1. Buy Product");
+	                    System.out.println("2. Go back");
+	                    System.out.print("Enter your choice: ");
+	                    int action = sc.nextInt();
+	                    sc.nextLine(); // Consume newline
 
-                    if (action == 1) {
-                        // Handle product purchase
-                        purchaseProduct(selectedProduct, isLoggedIn, userDao, purchaseDao, installmentDao);
-                    } else if (action == 2) {
-                        display(isLoggedIn, isAdmin);
-                    }
-                }
-                else {
-                	System.out.println("1. Go back");
-                    System.out.println("2. Exit");
-                    System.out.print("Enter your choice: ");
-                 
-                    int action = sc.nextInt();
-                    sc.nextLine(); // Consume newline
+	                    if (action == 1) {
+	                        // Handle product purchase
+	                        purchaseProduct(selectedProduct, isLoggedIn, userDao, purchaseDao, installmentDao);
+	                    } else if (action == 2) {
+	                        display(isLoggedIn, isAdmin);
+	                    }
+	                }
+	                else {
+	                	System.out.println("1. Go back");
+	                    System.out.println("2. Exit");
+	                    System.out.print("Enter your choice: ");
+	                 
+	                    int action = sc.nextInt();
+	                    sc.nextLine(); // Consume newline
 
-                    if (action == 1) {
-                        // Handle product purchase
-                    	display(isLoggedIn, isAdmin);
-                    } else if (action == 2) {
-                        System.exit(0);
-                    }
-                }
-            } else {
-                System.out.println("Product with ID " + productId + " not found.");
-                System.out.println("Going back....\n");
-                display(isLoggedIn, isAdmin);
-            }
+	                    if (action == 1) {
+	                        // Handle product purchase
+	                    	display(isLoggedIn, isAdmin);
+	                    } else if (action == 2) {
+	                        System.exit(0);
+	                    }
+	                }
+	            } else {
+	                System.out.println("Product with ID " + productId + " not found.");
+	                System.out.println("Going back....\n");
+	                display(isLoggedIn, isAdmin);
+	            }
 
 
-	        // Close the connection
-	        try {
-	            connection.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
+		        // Close the connection
+		        try {
+		            connection.close();
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }
+		        break;
+	        case 2:
+	        	HomePage hp = new HomePage();
+	        	hp.display(isLoggedIn, isAdmin);
+	        	break;
+	        case 3:
+	        	System.exit(0);
+	        	break;
+	        case 4:
+	        	System.out.println("Please enter a valid option. :) \n");
+	        	break;
 	        }
 	    } else {
 	        System.out.println("Failed to connect to the database.");

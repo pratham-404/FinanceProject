@@ -1,10 +1,12 @@
 package frontend;
 
+import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+import dao.DatabaseConnection;
 import frontend.AdminDashboard;
 import model.Admin;
 import model.User;
@@ -66,67 +68,80 @@ class HomePage{
 		
 		if(isLoggedIn == null && isAdmin == null)
 		{	
-			System.out.println("1. Login");
-			System.out.println("2. Register");
-			System.out.println("3. View Products");
-			System.out.print("Enter your choice: ");
-			option = sc.nextInt();
-			switch(option) {
-			case 1:
-				LoginPage lp = new LoginPage();
-				lp.display(isLoggedIn, isAdmin);
-				break;
-			case 2: 
-				System.out.println("Hello");
-				RegisterPage rp = new RegisterPage();
-				rp.display(isLoggedIn, isAdmin);
-				System.out.println("register() Called");
-				break;
-			case 3:
-				ViewProducts vp = new ViewProducts();
-				vp.display(isLoggedIn, isAdmin);
-				break;
-			default:
-				System.out.println("Please enter a valid choice next time!");
-				break;
+			while(true) {
+				System.out.println("1. Login");
+				System.out.println("2. Register");
+				System.out.println("3. View Products");
+				System.out.println("4. Exit");
+				System.out.print("Enter your choice: ");
+				option = sc.nextInt();
+				switch(option) {
+				case 1:
+					LoginPage lp = new LoginPage();
+					lp.display(isLoggedIn, isAdmin);
+					break;
+				case 2: 
+					RegisterPage rp = new RegisterPage();
+					rp.display(isLoggedIn, isAdmin);
+					break;
+				case 3:
+					ViewProducts vp = new ViewProducts();
+					vp.display(isLoggedIn, isAdmin);
+					break;
+				case 4:
+					System.exit(0);
+					break;
+				default:
+					System.out.println("Please enter a valid choice. :) \n");
+					break;
+				}
 			}
 		}
 		else if(isAdmin == null) {
-			System.out.println("1. View Products");
-			System.out.println("2. My Dashboard");
-			System.out.print("Enter your choice: ");
-			option = sc.nextInt();
-			switch(option) {
-			case 1:
-				System.out.println("viewProduct() Called");
-				break;
-			case 2:
-				System.out.println("myDashboard() Called");
-				break;
-			default:
-				System.out.println("Please enter a valid choice next time!");
-				break;
+			while(true) {
+				System.out.println("1. View Products");
+				System.out.println("2. My Dashboard");
+				System.out.println("3. Exit");
+				System.out.print("Enter your choice: ");
+				option = sc.nextInt();
+				switch(option) {
+				case 1:
+					ViewProducts vp = new ViewProducts();
+					vp.display(isLoggedIn, isAdmin);
+					break;
+				case 2:
+					MyDashboard md = new MyDashboard();
+					md.display(isLoggedIn, isAdmin);
+					break;
+				case 3:
+					System.exit(0);
+				default:
+					System.out.println("Please enter a valid choice. :)\n");
+					break;
+				}
 			}
 		}
 		else {
-			System.out.println("1. View Products");
-			System.out.println("2. My Dashboard");
-			System.out.println("3. View Admin Dashboard");
-			System.out.print("Enter your choice: ");
-			option = sc.nextInt();
-			switch(option) {
-			case 1:
-				System.out.println("viewProduct() Called");
-				break;
-			case 2:
-				System.out.println("myDashboard() Called");
-				break;
-			case 3:
-				System.out.println("adminDashboard() Called");
-				break;
-			default:
-				System.out.println("Please enter a valid choice next time!");
-				break;
+			while(true) {
+				System.out.println("1. View Products");
+				System.out.println("2. View Admin Dashboard");
+				System.out.println("3. Exit");
+				System.out.print("Enter your choice: ");
+				option = sc.nextInt();
+				switch(option) {
+				case 1:
+					ViewProducts vp = new ViewProducts();
+					vp.display(isLoggedIn, isAdmin);
+					break;
+				case 2:
+					System.out.println("adminDashboard() Called");
+					break;
+				case 3:
+					System.exit(0);
+				default:
+					System.out.println("Please enter a valid choice. :)\n");
+					break;
+				}
 			}
 		}
 	}

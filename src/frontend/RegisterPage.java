@@ -37,7 +37,6 @@ public class RegisterPage {
         boolean isActive;
 
        
-        sc.nextLine();
         System.out.print("Enter your name: ");
         name = sc.nextLine();
 
