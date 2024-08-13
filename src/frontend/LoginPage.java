@@ -2,6 +2,8 @@ package frontend;
 
 import java.util.Scanner;
 
+import model.User;
+
 public class LoginPage {
 
 	String name;
@@ -12,7 +14,7 @@ public class LoginPage {
 	Line l = new Line();
 	Scanner sc = new Scanner(System.in);
 	
-	public void display(boolean isLoggedIn, boolean isAdmin) {
+	public void display(User isLoggedIn, User isAdmin) {
 		System.out.println("\n");
 		System.out.println("\t\t\t\tLogin Page");
 		l.line(90);
@@ -29,7 +31,7 @@ public class LoginPage {
 		
 	}
 	
-	public void login(String username, String password,boolean isLoggedIn, boolean isAdmin) {
+	public void login(String username, String password,User isLoggedIn, User isAdmin) {
 		// Check if the username exists in Admin table.
 		
 		System.out.println("Checking password!");

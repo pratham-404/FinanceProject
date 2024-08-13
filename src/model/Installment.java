@@ -9,6 +9,13 @@ public class Installment {
     private String paymentStatus; // "paid", "pending"
     private Date paymentDate;
         
+	public Installment(int purchaseId, Date installmentDueDate, double amount, String paymentStatus) {
+		this.purchaseId = purchaseId;
+		this.installmentDueDate = installmentDueDate;
+		this.amount = amount;
+		this.paymentStatus = paymentStatus;
+	}
+	
 	public Installment(int installmentId, int purchaseId, Date installmentDueDate, double amount, String paymentStatus,
 			Date paymentDate) {
 		super();
