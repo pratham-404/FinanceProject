@@ -4,9 +4,12 @@ import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import dao.DatabaseConnection;
 import dao.UserDAO;
+import model.Admin;
 import model.User;
 
+import java.sql.Connection;
 import java.time.*; 
 
 // import model.User;
@@ -17,7 +20,7 @@ public class RegisterPage {
 	private Scanner sc = new Scanner(System.in);
     // private UserDAO userDao = new UserDAO(); // Instantiate UserDao
 	
-	public void display(boolean isLoggedIn, boolean isAdmin) {
+	public void display(User isLoggedIn, Admin isAdmin) {
         String name;
         String dob;
         String email;
@@ -82,8 +85,8 @@ public class RegisterPage {
         // Create a new User object
         User newUser = new User(name, d1, email,  phoneNo,  username, password,  address,
     			cardType,  bankName,  accountNo,  ifscCode);
-
-        UserDAO userDAO = new UserDAO(null);
+        Connection connection = DatabaseConnection.getConnection();
+        UserDAO userDAO = new UserDAO(connection);
 		// Save the user to the database
         userDAO.createUser(newUser);
 

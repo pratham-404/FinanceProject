@@ -2,6 +2,7 @@ package frontend;
 
 import dao.UserDAO;
 import model.User;
+import model.Admin;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +16,7 @@ public class AdminDashboard {
 	private Connection connection;
     private UserDAO userDao;
 
-    public void display(boolean isLoggedIn, boolean isAdmin) {
+    public void display(User isLoggedIn, Admin isAdmin) {
     	try {
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/finance_app", "root", "Naruto@4523");
 		} catch (SQLException e) {

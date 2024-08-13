@@ -1,7 +1,12 @@
 package frontend;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
+import frontend.AdminDashboard;
+import model.Admin;
 import model.User;
 
 // Sakshi:
@@ -16,15 +21,16 @@ import model.User;
 
 public class Home {
 	
-	static boolean isLoggedIn = false;
-	static boolean isAdmin = false;
+	static User isLoggedIn = null;
+	static Admin isAdmin = null;
 
 	public static void main(String args[]) {
+		
 		HomePage home = new HomePage();
 		home.display(isLoggedIn, isAdmin);
 		
-		AdminDashboard admin = new AdminDashboard();
-		admin.display( isLoggedIn, isAdmin);
+		//AdminDashboard admin = new AdminDashboard();
+		//admin.display( isLoggedIn, isAdmin);
 	}
 	
 
@@ -45,29 +51,25 @@ class Line{
 class HomePage{
 	
 	Line l = new Line();
+	Scanner sc = new Scanner(System.in);
 	
-	public void display(boolean isLoggedIn, boolean isAdmin) {
+	public void display(User isLoggedIn, Admin isAdmin) {
 		System.out.println("\n\t\t\t\tFinance Application");
 		l.line(90);
 		menu(isLoggedIn, isAdmin);
 	}
 	
-	/**
-	 * @param isLoggedIn
-	 * @param isAdmin
-	 */
-	public void menu(boolean isLoggedIn, boolean isAdmin) {
-		
-		Scanner sc = new Scanner(System.in);
+
+	public void menu(User isLoggedIn, Admin isAdmin) {
 		
 		int option;
 		
-		if(!isLoggedIn && !isAdmin)
+		if(isLoggedIn == null && isAdmin == null)
 		{	
 			System.out.println("1. Login");
 			System.out.println("2. Register");
 			System.out.println("3. View Products");
-			System.out.println("Enter your choice: ");
+			System.out.print("Enter your choice: ");
 			option = sc.nextInt();
 			switch(option) {
 			case 1:
@@ -83,17 +85,16 @@ class HomePage{
 			case 3:
 				ViewProducts vp = new ViewProducts();
 				vp.display(isLoggedIn, isAdmin);
-				System.out.println("viewProduct() Called");
 				break;
 			default:
 				System.out.println("Please enter a valid choice next time!");
 				break;
 			}
 		}
-		else if(!isAdmin) {
+		else if(isAdmin == null) {
 			System.out.println("1. View Products");
 			System.out.println("2. My Dashboard");
-			System.out.println("Enter your choice: ");
+			System.out.print("Enter your choice: ");
 			option = sc.nextInt();
 			switch(option) {
 			case 1:
@@ -111,7 +112,7 @@ class HomePage{
 			System.out.println("1. View Products");
 			System.out.println("2. My Dashboard");
 			System.out.println("3. View Admin Dashboard");
-			System.out.println("Enter your choice: ");
+			System.out.print("Enter your choice: ");
 			option = sc.nextInt();
 			switch(option) {
 			case 1:

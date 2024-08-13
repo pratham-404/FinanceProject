@@ -55,6 +55,9 @@ public class UserDAO {
                     // Create a User object and return it if the password matches
                     return mapResultSetToUser(resultSet);
                 }
+                else {
+                	return null;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -184,5 +187,18 @@ public class UserDAO {
         user.setUsedCredit(resultSet.getFloat("used_credit"));
         user.setActive(resultSet.getBoolean("is_active"));
         return user;
+    }
+    
+    public boolean updateUserCredit(int userId, float newUsedCredit) {
+        String updateCreditSQL = "UPDATE users SET used_credit = ? WHERE user_id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(updateCreditSQL)) {
+            preparedStatement.setFloat(1, newUsedCredit);
+            preparedStatement.setInt(2, userId);
+            int rowsAffected = preparedStatement.executeUpdate();
+            return rowsAffected > 0; // Returns true if the credit was updated
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

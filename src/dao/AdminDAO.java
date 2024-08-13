@@ -32,6 +32,9 @@ public class AdminDAO {
                     int adminId = resultSet.getInt("admin_id");
                     admin = new Admin(adminId, username, storedPassword);
                 }
+                else {
+                	return null;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

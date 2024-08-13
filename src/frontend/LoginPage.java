@@ -1,8 +1,13 @@
 package frontend;
 
+import java.sql.Connection;
 import java.util.Scanner;
 
+import dao.AdminDAO;
+import dao.DatabaseConnection;
 import dao.UserDAO;
+import model.Admin;
+import model.User;
 
 public class LoginPage {
 
@@ -10,11 +15,13 @@ public class LoginPage {
 	String password;
 	
 	//instances of UserDao
-	UserDAO userDao = new UserDAO();
+	Connection connection = DatabaseConnection.getConnection();
+	UserDAO userDao = new UserDAO(connection);
+	AdminDAO adminDao = new AdminDAO(connection);
 	Line l = new Line();
 	Scanner sc = new Scanner(System.in);
 	
-	public void display(boolean isLoggedIn, boolean isAdmin) {
+	public void display(User isLoggedIn, Admin isAdmin) {
 		System.out.println("\n");
 		System.out.println("\t\t\t\tLogin Page");
 		l.line(90);
@@ -31,28 +38,31 @@ public class LoginPage {
 		
 	}
 	
-	public void login(String username, String password,boolean isLoggedIn, boolean isAdmin) {
+	public void login(String username, String password,User isLoggedIn, Admin isAdmin) {
 		// Check if the username exists in Admin table.
 		
-		System.out.println("Checking password!");
+		//ystem.out.println("Checking password!");
 		
-		 boolean isUser = UserDao.isUsernameInUser(username);
-     boolean isAdmin = UserDao.isUsernameInAdmin(username);
+		 User userCheck = userDao.verifyUsernameAndPassword(username, password);
+		 Admin adminCheck = adminDao.verifyUsernameAndPassword(username,password);
+		 
+		 
+		 if(userCheck != null) {
+			 	isLoggedIn = userCheck;
+				System.out.println("Login Successfull");
+				HomePage home = new HomePage();
+				home.display(isLoggedIn, isAdmin);
+		 }
+		 else if(adminCheck != null) {
+			 isAdmin  =  adminCheck;
+			 System.out.println("Login Successfull");
+			 System.out.println("Admin Logged in....");
+			 HomePage home = new HomePage();
+			home.display(isLoggedIn, isAdmin);
+		 }
+		 else {
+			 System.out.println("User not found, kindly register");
+		 }
       
-     if(!isUser && !isAdmin) {
-	    	 System.out.println("User not found, kindly register");
-	     } 
-		 else if(isAdmin){
-			User result = adminDAO.verifyUsernameAndPassword(username, password);
- 			
-		}
-	else {
-		
- 			 User result = adminDAO.verifyUsernameAndPassword(username, password);
-		
-
-	        
-		
 	}
-
 }

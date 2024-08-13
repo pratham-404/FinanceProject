@@ -13,6 +13,7 @@ public class Purchase {
     private double installmentAmount;
     private String paymentStatus; // "completed", "pending", "failed"
     
+    
 	public Purchase(int purchaseId, int userId, int productId, String emiPeriod, Date purchaseDate, double totalAmount,
 			double amountPaid, int installmentCount, double installmentAmount, String paymentStatus) {
 		super();
