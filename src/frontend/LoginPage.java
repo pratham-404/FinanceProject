@@ -2,13 +2,15 @@ package frontend;
 
 import java.util.Scanner;
 
+import dao.UserDAO;
+
 public class LoginPage {
 
 	String name;
 	String password;
 	
 	//instances of UserDao
-	//UserDao userDao = new UserDAO();
+	UserDAO userDao = new UserDAO();
 	Line l = new Line();
 	Scanner sc = new Scanner(System.in);
 	
@@ -34,22 +36,21 @@ public class LoginPage {
 		
 		System.out.println("Checking password!");
 		
-//		 boolean isUser = UserDao.isUsernameInUser(username);
-//	     boolean isAdmin = UserDao.isUsernameInAdmin(username);
-//	      
-//	     if(!isUser && !isAdmin) {
-//	    	 System.out.println("User not found, kindly register");
-//	     } 
-//		 else if(isAdmin){
-//			User result = adminDAO.verifyUsernameAndPassword(username, password);
-// 			
-//		}
-//		else {
+		 boolean isUser = UserDao.isUsernameInUser(username);
+     boolean isAdmin = UserDao.isUsernameInAdmin(username);
+      
+     if(!isUser && !isAdmin) {
+	    	 System.out.println("User not found, kindly register");
+	     } 
+		 else if(isAdmin){
+			User result = adminDAO.verifyUsernameAndPassword(username, password);
+ 			
+		}
+	else {
 		
-// 			 User result = adminDAO.verifyUsernameAndPassword(username, password);
+ 			 User result = adminDAO.verifyUsernameAndPassword(username, password);
 		
-//	    	 
-//	     }
+
 	        
 		
 	}

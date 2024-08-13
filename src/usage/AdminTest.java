@@ -15,7 +15,7 @@ public class AdminTest {
     public static void main(String[] args) {
         try {
             // Set up the database connection
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/finance_app", "root", "root");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/finance_app", "root", "Naruto@4523");
             adminDao = new AdminDAO(connection);
 
             Scanner scanner = new Scanner(System.in);

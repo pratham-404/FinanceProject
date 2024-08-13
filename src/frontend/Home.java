@@ -2,6 +2,8 @@ package frontend;
 
 import java.util.Scanner;
 
+import model.User;
+
 // Sakshi:
 // 		-> Login Page
 // 		-> Register Page
@@ -20,6 +22,9 @@ public class Home {
 	public static void main(String args[]) {
 		HomePage home = new HomePage();
 		home.display(isLoggedIn, isAdmin);
+		
+		AdminDashboard admin = new AdminDashboard();
+		admin.display( isLoggedIn, isAdmin);
 	}
 	
 
@@ -47,6 +52,10 @@ class HomePage{
 		menu(isLoggedIn, isAdmin);
 	}
 	
+	/**
+	 * @param isLoggedIn
+	 * @param isAdmin
+	 */
 	public void menu(boolean isLoggedIn, boolean isAdmin) {
 		
 		Scanner sc = new Scanner(System.in);
@@ -66,6 +75,9 @@ class HomePage{
 				lp.display(isLoggedIn, isAdmin);
 				break;
 			case 2: 
+				System.out.println("Hello");
+				RegisterPage rp = new RegisterPage();
+				rp.display(isLoggedIn, isAdmin);
 				System.out.println("register() Called");
 				break;
 			case 3:

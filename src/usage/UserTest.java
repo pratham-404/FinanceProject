@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +19,7 @@ public class UserTest {
     public static void main(String[] args) {
         try {
             // Set up the database connection
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/finance_app", "root", "root");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/finance_app", "root", "Naruto@4523");
             userDao = new UserDAO(connection);
 
             Scanner scanner = new Scanner(System.in);
@@ -77,7 +78,7 @@ public class UserTest {
             String name = scanner.nextLine();
             System.out.print("Date of Birth (yyyy-MM-dd): ");
             String dobInput = scanner.nextLine();
-            Date dob = new SimpleDateFormat("yyyy-MM-dd").parse(dobInput);
+            LocalDate dob = LocalDate.parse(dobInput);
             System.out.print("Email: ");
             String email = scanner.nextLine();
             System.out.print("Phone Number: ");

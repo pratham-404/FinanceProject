@@ -1,9 +1,10 @@
 package model;
 import java.util.Date;
+import java.time.LocalDate;
 
 public class User {
     private String name;
-    private Date dob;
+    private LocalDate dob;
     private String email;
     private String phoneNo;
     private String username;
@@ -20,11 +21,11 @@ public class User {
     private float usedCredit;
     private boolean isActive;
     
-	public User(String name, Date dob, String email, String phoneNo, String username, String password, String address,
+	public User(String name, LocalDate dob2, String email, String phoneNo, String username, String password, String address,
 			String cardType, String bankName, String accountNo, String ifscCode) {
 		super();
 		this.name = name;
-		this.dob = dob;
+		this.dob = dob2;
 		this.email = email;
 		this.phoneNo = phoneNo;
 		this.username = username;
@@ -34,6 +35,12 @@ public class User {
 		this.bankName = bankName;
 		this.accountNo = accountNo;
 		this.ifscCode = ifscCode;
+	}
+
+	public User(String name2, LocalDate dob2, String email2, String phoneNo2, String username2, String password2,
+			String address2, String cardType2, String bankName2, String accountNo2, String ifscCode2,
+			double totalCredit2, double usedCredit2, boolean isActive2) {
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -51,11 +58,11 @@ public class User {
 		this.name = name;
 	}
 
-	public Date getDob() {
+	public  LocalDate getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
 

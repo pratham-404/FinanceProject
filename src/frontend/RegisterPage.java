@@ -1,7 +1,13 @@
 package frontend;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+
+import dao.UserDAO;
+import model.User;
+
+import java.time.*; 
 
 // import model.User;
 // import dao.UserDAO; // Import the DAO class
@@ -28,12 +34,14 @@ public class RegisterPage {
         boolean isActive;
 
        
-
+        sc.nextLine();
         System.out.print("Enter your name: ");
         name = sc.nextLine();
 
-        System.out.print("Enter your Date of Birth (DD/MM/YYYY): ");
+        System.out.print("Enter your Date of Birth (YYYY-MM-DD): ");
         dob = sc.nextLine();
+        LocalDate d1 = LocalDate.parse(dob); 
+
 
         System.out.print("Enter your Email: ");
         email = sc.nextLine();
@@ -72,10 +80,12 @@ public class RegisterPage {
         isActive = sc.nextBoolean();
 
         // Create a new User object
-        //User newUser = new User( name, dob, email, phoneNo, username, password, address, cardType, bankName, accountNo, ifscCode, totalCredit, usedCredit, isActive);
+        User newUser = new User(name, d1, email,  phoneNo,  username, password,  address,
+    			cardType,  bankName,  accountNo,  ifscCode);
 
-        // Save the user to the database
-        //userDao.addUser(newUser);
+        UserDAO userDAO = new UserDAO(null);
+		// Save the user to the database
+        userDAO.createUser(newUser);
 
         // Redirect to login page
         LoginPage lp = new LoginPage();
