@@ -134,7 +134,8 @@ class HomePage{
 					vp.display(isLoggedIn, isAdmin);
 					break;
 				case 2:
-					System.out.println("adminDashboard() Called");
+					AdminDashboard ad = new AdminDashboard();
+					ad.display(isLoggedIn, isAdmin);
 					break;
 				case 3:
 					System.exit(0);

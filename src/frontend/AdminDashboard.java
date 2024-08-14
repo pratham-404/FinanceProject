@@ -1,5 +1,6 @@
 package frontend;
 
+import dao.DatabaseConnection;
 import dao.UserDAO;
 import model.User;
 import model.Admin;
@@ -13,16 +14,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AdminDashboard {
-	private Connection connection;
+	Connection connection = DatabaseConnection.getConnection();
     private UserDAO userDao;
 
     public void display(User isLoggedIn, Admin isAdmin) {
-    	try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/finance_app", "root", "Naruto@4523");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	
         userDao = new UserDAO(connection);
         Scanner scanner = new Scanner(System.in);
     
@@ -30,7 +26,8 @@ public class AdminDashboard {
             System.out.println("\n\t\t\t\tAdmin Dashboard");
             System.out.println("1. View all users");
             System.out.println("2. Activate/Deactivate user");
-            System.out.println("3. Exit");
+            System.out.println("3. Go Back");
+            System.out.println("4. Exit");
             System.out.print("Choose an option: ");
             int option = scanner.nextInt();
             scanner.nextLine(); // Consume newline
@@ -43,7 +40,11 @@ public class AdminDashboard {
 //                    activateDeactivateUser();
                     break;
                 case 3:
-                    System.out.println("Exiting...");
+                	HomePage hp = new HomePage();
+                	hp.display(isLoggedIn, isAdmin);
+                	break;
+                case 4:
+                    System.exit(0);
                     return;
                 default:
                     System.out.println("Invalid option, please try again.");

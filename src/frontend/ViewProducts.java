@@ -79,7 +79,7 @@ public class ViewProducts {
 
 	                    if (action == 1) {
 	                        // Handle product purchase
-	                        purchaseProduct(selectedProduct, isLoggedIn, userDao, purchaseDao, installmentDao);
+	                        purchaseProduct(selectedProduct, isLoggedIn);
 	                    } else if (action == 2) {
 	                        display(isLoggedIn, isAdmin);
 	                    }
@@ -166,17 +166,27 @@ public class ViewProducts {
         System.out.println();
     }
 
-    private void purchaseProduct(Product product, User user, UserDAO userDao, PurchaseDAO purchaseDao, InstallmentDAO installmentDao) {
+    private void purchaseProduct(Product product, User user ) {
+    	Connection connection = DatabaseConnection.getConnection();
+    	UserDAO userDao = new UserDAO(connection);
+    	PurchaseDAO purchaseDao = new PurchaseDAO(connection);
+    	InstallmentDAO installmentDao = new InstallmentDAO(connection);
         if (user.getTotalCredit() - user.getUsedCredit() >= product.getCost()) {
             // Simulate purchase processing
             System.out.println("Processing purchase for: " + product);
             float newUsedCredit = (float)user.getUsedCredit() + (float)product.getCost();
             user.setUsedCredit(newUsedCredit);
+            
+            System.out.print("Please select an EMI option: ");
+            int emiOption = sc.nextInt();
 
             // Update user in the database
             boolean updateSuccessful = userDao.updateUserCredit(user.getUserId(), newUsedCredit);
+            
             if (updateSuccessful) {
                 System.out.println("Purchase successful!");
+                
+                String [] emiTerms = {};
 
                 // Create a purchase record
                 Purchase purchase = new Purchase(
