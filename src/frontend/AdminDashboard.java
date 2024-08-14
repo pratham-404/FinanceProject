@@ -37,7 +37,13 @@ public class AdminDashboard {
                     viewAllUsers();
                     break;
                 case 2:
-//                    activateDeactivateUser();
+                	System.out.println("User_id: ");
+                    int u_id = scanner.nextInt();
+
+                    System.out.println("Activate(1) / Deactivate(0): ");
+                    boolean is_active = scanner.nextBoolean();
+
+                   activateDeactivateUser(u_id,is_active);
                     break;
                 case 3:
                 	HomePage hp = new HomePage();
@@ -57,9 +63,7 @@ public class AdminDashboard {
     	List<User> ls = null; 
     	 try {
     		 ls = dao.readAllUsers();
-		
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	 if (ls != null) {
@@ -74,13 +78,13 @@ public class AdminDashboard {
     };
     
   private boolean activateDeactivateUser(int userId, boolean isActive) {
+	 
 	  try {
 		return userDao.updateActivation(userId, isActive);
 	} catch (Exception e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	return activateDeactivateUser(userId, isActive) ;
+	  return false;
   }
   
   
