@@ -68,7 +68,7 @@ public class AdminDashboard {
 		}
     	 if (ls != null) {
     	        for (User usr : ls) { 
-    	            System.out.println(usr); // Print the User object directly
+    	            printUserCard(usr);
     	        }
     	    }
 		//List<User> ls = List<dao.UserDAO.readAllUsers()>;
@@ -110,6 +110,29 @@ public class AdminDashboard {
             }
         }*/
     
+	 private void printUserCard(User user) {
+	     StringBuilder card = new StringBuilder();
+	     String border = "+----------------------------------+";
+	
+	     card.append(border).append("\n");
+	     card.append(String.format("| %-30s |\n", "User ID: " + user.getUserId()));
+	     card.append(String.format("| %-30s |\n", "Name: " + user.getName()));
+	     card.append(String.format("| %-30s |\n", "Username: " + user.getUsername()));
+	     card.append(String.format("| %-30s |\n", "DOB: " + user.getDob()));
+	     card.append(String.format("| %-30s |\n", "Email: " + user.getEmail()));
+	     card.append(String.format("| %-30s |\n", "Phone No: " + user.getPhoneNo()));
+	     card.append(String.format("| %-30s |\n", "Address: " + user.getAddress()));
+	     card.append(String.format("| %-30s |\n", "Card Type: " + user.getCardType()));
+	     card.append(String.format("| %-30s |\n", "Bank Name: " + user.getBankName()));
+	     card.append(String.format("| %-30s |\n", "Account No: " + user.getAccountNo()));
+	     card.append(String.format("| %-30s |\n", "IFSC Code: " + user.getIfscCode()));
+	     card.append(String.format("| %-30s |\n", "Total Credit: " + user.getTotalCredit()));
+	     card.append(String.format("| %-30s |\n", "Used Credit: " + user.getUsedCredit()));
+	     card.append(String.format("| %-30s |\n", "Active: " + (user.isActive() ? "Yes" : "No")));
+	     card.append(border).append("\n");
+	
+	     System.out.println(card.toString());
+	 }
     
     
    

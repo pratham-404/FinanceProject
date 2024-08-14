@@ -169,4 +169,9 @@ public class User {
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
+
+	public void setDob(Date date) {
+		// TODO Auto-generated method stub
+		
+	}
 }
